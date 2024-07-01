@@ -1,4 +1,5 @@
 using BasicCommonProject.Result;
+using IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,10 +14,12 @@ namespace BasicCommonProject.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ITest iTest;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger,ITest iTest)
         {
             _logger = logger;
+            this.iTest = iTest;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
@@ -50,6 +53,14 @@ namespace BasicCommonProject.Controllers
             int b = 0;
 
             return FailResult<string>("1111");
+        }
+        [HttpPost]
+        public ResponseResult<int> GetTotal()
+        {
+            int a = 1;
+            int b = 0;
+           int result= iTest.Add(a, b);
+            return SuccessResult<int>(result);
         }
         [HttpGet]
         [Authorize(Roles = "Admin")]

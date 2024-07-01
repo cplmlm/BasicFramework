@@ -1,3 +1,5 @@
+using Autofac.Extensions.DependencyInjection;
+using Autofac;
 using BasicCommonProject.Filter;
 using BasicCommonProject.Middle;
 using BasicCommonProject.Middleware;
@@ -10,9 +12,15 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 using System.Text;
+using Extensions.ServiceExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
-
+// 1、配置host与容器
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
+            .ConfigureContainer<ContainerBuilder>(builder =>
+            {
+              builder.RegisterModule(new AutofacModuleRegister());
+            });
 // Add services to the container.
 builder.Services.AddControllers();
 //builder.Services.AddControllers(options =>
@@ -27,6 +35,7 @@ builder.Services.AddLogging(configure => configure
                 .AddFilter("Microsoft", LogLevel.Warning)
                .SetMinimumLevel(LogLevel.Information)  // 设置日志级别
     );
+
 var basePath = AppContext.BaseDirectory;
 builder.Services.AddSwaggerGen(c =>
 {
