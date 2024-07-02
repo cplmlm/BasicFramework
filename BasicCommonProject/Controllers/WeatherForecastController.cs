@@ -2,6 +2,7 @@ using BasicCommonProject.Result;
 using IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Model.ViewModels;
 
 namespace BasicCommonProject.Controllers
 {
@@ -55,12 +56,10 @@ namespace BasicCommonProject.Controllers
             return FailResult<string>("1111");
         }
         [HttpPost]
-        public ResponseResult<int> GetTotal()
+        public async Task<ResponseResult<BlogViewModels>> GetTotal(int id)
         {
-            int a = 1;
-            int b = 0;
-           int result= iTest.Add(a, b);
-            return SuccessResult<int>(result);
+           BlogViewModels result = await iTest.GetBlog(id);
+            return SuccessResult<BlogViewModels>(result);
         }
         [HttpGet]
         [Authorize(Roles = "Admin")]

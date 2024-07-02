@@ -13,6 +13,7 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 using System.Text;
 using Extensions.ServiceExtensions;
+using Extensions.AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 // 1¡¢ÅäÖÃhostÓëÈÝÆ÷
@@ -23,6 +24,8 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
             });
 // Add services to the container.
 builder.Services.AddControllers();
+//builder.Services.AddAutoMapperSetup();
+builder.Services.AddAutoMapper(typeof(CustomProfile));
 //builder.Services.AddControllers(options =>
 //{
 //    options.Filters.Add<ResultWrapperFilter>();
