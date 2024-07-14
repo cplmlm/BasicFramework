@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Blog.Core.IRepository.Base
+namespace Repository.Base
 {
     public interface IBaseRepository<TEntity> where TEntity : class
     {

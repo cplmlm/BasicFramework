@@ -1,7 +1,12 @@
 ﻿using AutoMapper;
+using System;
+using System.Collections.Generic;
 
 namespace Model
 {
+    /// <summary>
+    /// 通用分页信息类
+    /// </summary>
     public class PageModel<T>
     {
         /// <summary>
@@ -65,5 +70,7 @@ namespace Model
             return model;
 
         }
+
     }
+
 }

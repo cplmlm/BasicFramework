@@ -1,6 +1,0 @@
-@BasicCommonProject_HostAddress = http://localhost:5116
-
-GET {{BasicCommonProject_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

@@ -1,4 +1,4 @@
-﻿using Common.Helper;
+﻿using Common;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
-namespace Autho.JWT
+namespace Extensions.AuthHelper
 {
     public class JwtHelper
     {
@@ -21,9 +21,9 @@ namespace Autho.JWT
         {
             var dateTime = DateTime.UtcNow;
 
-            string iss = Appsettings.app(new string[] { "Audience", "Issuer" });
-            string aud = Appsettings.app(new string[] { "Audience", "Audience" });
-            string secret = Appsettings.app(new string[] { "Audience", "Secret" });
+            string iss = AppSettings.app(new string[] { "Audience", "Issuer" });
+            string aud = AppSettings.app(new string[] { "Audience", "Audience" });
+            string secret = AppSettings.app(new string[] { "Audience", "Secret" });
 
             //var claims = new Claim[] //old
             var claims = new List<Claim>

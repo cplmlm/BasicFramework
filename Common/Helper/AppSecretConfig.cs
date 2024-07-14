@@ -7,20 +7,17 @@ using System.Threading.Tasks;
 
 namespace Common.Helper
 {
-
     public class AppSecretConfig
     {
-        private static IConfiguration Configuration;
+        private static string Audience_Secret = AppSettings.app(new string[] { "Audience", "Secret" });
+        private static string Audience_Secret_File = AppSettings.app(new string[] { "Audience", "SecretFile" });
+
+
         public static string Audience_Secret_String => InitAudience_Secret();
 
-        public AppSecretConfig(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+
         private static string InitAudience_Secret()
         {
-            var Audience_Secret = Configuration["Audience:Secret"];
-            var Audience_Secret_File = Configuration["Audience:SecretFile"];
             var securityString = DifDBConnOfSecurity(Audience_Secret_File);
             if (!string.IsNullOrEmpty(Audience_Secret_File) && !string.IsNullOrEmpty(securityString))
             {
@@ -47,7 +44,8 @@ namespace Common.Helper
                 catch (System.Exception) { }
             }
 
-            return conn[conn.Length - 1];
+            return "";
         }
+
     }
 }
