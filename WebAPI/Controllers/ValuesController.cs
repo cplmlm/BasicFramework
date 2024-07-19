@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Common.GlobalVar;
+using Services.Base;
+using IServices;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,13 +10,22 @@ namespace Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Permissions.Name)]
+
     public class ValuesController : ControllerBase
     {
+        private readonly Interface1<string> _interface1;
+        readonly ISysUserInfoServices _sysUserInfoServices;
+        public ValuesController(Interface1<string> interface1, ISysUserInfoServices sysUserInfoServices)
+        {
+            this._interface1 = interface1;
+            this._sysUserInfoServices = sysUserInfoServices;
+        }
         // GET: api/<ValuesController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IEnumerable<string>> Get()
         {
+           var result = await _interface1.Method1(string.Empty);
+            var result2 = _sysUserInfoServices.GetUserRoleNameStr1("test","123");
             return new string[] { "value1", "value2" };
         }
 

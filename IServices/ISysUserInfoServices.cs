@@ -13,5 +13,6 @@ namespace IServices
 	{
         Task<SysUserInfo> SaveUserInfo(string loginName, string loginPwd);
         Task<string> GetUserRoleNameStr(string loginName, string loginPwd);
+        Task<string> GetUserRoleNameStr1(string loginName, string loginPwd);
     }
 }

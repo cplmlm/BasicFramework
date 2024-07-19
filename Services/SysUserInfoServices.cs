@@ -18,7 +18,7 @@ namespace Services
     {
         private readonly IBaseRepository<UserRole> _userRoleRepository;
         private readonly IBaseRepository<Role> _roleRepository;
-        public SysUserInfoServices(IBaseRepository<UserRole> userRoleRepository, IBaseRepository<Role> roleRepository)
+        public SysUserInfoServices(IBaseRepository<UserRole> userRoleRepository, IBaseRepository<Role> roleRepository, IBaseRepository<SysUserInfo> BaseDal) : base(BaseDal)
         {
             _userRoleRepository = userRoleRepository;
             _roleRepository = roleRepository;
@@ -71,6 +71,20 @@ namespace Services
                 }
             }
             return roleName;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="loginName"></param>
+        /// <param name="loginPwd"></param>
+        /// <returns></returns>
+        public async Task<string> GetUserRoleNameStr1(string loginName, string loginPwd)
+        {
+       
+                var userRoles = await _userRoleRepository.Query(ur => ur.UserId == 1);
+           
+            return "112";
         }
     }
 }

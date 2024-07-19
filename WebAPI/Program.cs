@@ -3,6 +3,9 @@ using Extensions;
 using Common;
 using Common.LifetimeInterfaces;
 using Core.AutoInjectService;
+using Autofac;
+using Extensions.ServiceExtensions;
+using Autofac.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 //≈‰÷√host”Î»›∆˜

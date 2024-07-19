@@ -11,6 +11,7 @@ using Model.Models;
 using System.Text;
 using Org.BouncyCastle.Utilities.Encoders;
 using Common.GlobalVar;
+using Services;
 
 namespace Web.Controllers
 {
@@ -141,7 +142,6 @@ namespace Web.Controllers
                 return Failed<TokenInfoViewModel>("用户名或密码不能为空");
 
             // pass = MD5Helper.MD5Encrypt32(pass);
-
             var user = await _sysUserInfoServices.Query(d =>
                 d.LoginName == name && d.LoginPWD == pass);
             if (user.Count > 0)

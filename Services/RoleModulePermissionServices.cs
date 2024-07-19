@@ -17,17 +17,17 @@ namespace Services
     public class RoleModulePermissionServices : BaseServices<RoleModulePermission>, IRoleModulePermissionServices
     {
         readonly IRoleModulePermissionRepository _dal;
-        readonly IBaseRepository<Modules> _moduleRepository;
+      //  readonly IBaseRepository<Modules> _moduleRepository;
         readonly IBaseRepository<Role> _roleRepository;
 
         // 将多个仓储接口注入 
         public RoleModulePermissionServices(
             IRoleModulePermissionRepository dal,
-            IBaseRepository<Modules> moduleRepository,
-            IBaseRepository<Role> roleRepository)
+           // IBaseRepository<Modules> moduleRepository,
+            IBaseRepository<Role> roleRepository): base(dal)
         {
             this._dal = dal;
-            this._moduleRepository = moduleRepository;
+            //this._moduleRepository = moduleRepository;
             this._roleRepository = roleRepository;
         }
 
@@ -40,7 +40,7 @@ namespace Services
         {
             var roleModulePermissions = await base.Query(a => a.IsDeleted == false);
             var roles = await _roleRepository.Query(a => a.IsDeleted == false);
-            var modules = await _moduleRepository.Query(a => a.IsDeleted == false);
+           // var modules = await _moduleRepository.Query(a => a.IsDeleted == false);
 
             //var roleModulePermissionsAsync = base.Query(a => a.IsDeleted == false);
             //var rolesAsync = _roleRepository.Query(a => a.IsDeleted == false);
@@ -56,7 +56,7 @@ namespace Services
                 foreach (var item in roleModulePermissions)
                 {
                     item.Role = roles.FirstOrDefault(d => d.Id == item.RoleId);
-                    item.Module = modules.FirstOrDefault(d => d.Id == item.ModuleId);
+                   // item.Module = modules.FirstOrDefault(d => d.Id == item.ModuleId);
                 }
 
             }

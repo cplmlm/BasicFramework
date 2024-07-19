@@ -7,6 +7,7 @@ using Services.Base;
 using Autofac.Core;
 using System.Reflection;
 using Repository.UnitOfWorks;
+using Model.Models;
 
 namespace Core.AutoInjectService;
 /// <summary>
@@ -50,8 +51,19 @@ public static class AutoInjectService
         //注册UnitOfWorkManage
         services.AddScoped<IUnitOfWorkManage, UnitOfWorkManage>();
         //注册泛型接口和实现
+        services.AddTransient(typeof(Interface1<>), typeof(Class1<>));
         services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
         services.AddTransient(typeof(IBaseServices<>), typeof(BaseServices<>));
+        //services.AddTransient(typeof(IBaseRepository<SysUserInfo>), typeof(BaseRepository<SysUserInfo>));
+        //services.AddTransient(typeof(IBaseRepository<UserRole>), typeof(BaseRepository<UserRole>));
+        //services.AddTransient(typeof(IBaseRepository<Role>), typeof(BaseRepository<Role>));
+        //services.AddTransient(typeof(IBaseRepository<RoleModulePermission>), typeof(BaseRepository<RoleModulePermission>));
+        //services.AddTransient(typeof(IBaseRepository<Model.Models.Module>), typeof(BaseRepository<Model.Models.Module>));
+        //services.AddTransient(typeof(IBaseServices<SysUserInfo>), typeof(BaseServices<SysUserInfo>));
+        //services.AddTransient(typeof(IBaseServices<UserRole>), typeof(BaseServices<UserRole>));
+        //services.AddTransient(typeof(IBaseServices<Role>), typeof(BaseServices<Role>));
+        //services.AddTransient(typeof(IBaseServices<RoleModulePermission>), typeof(BaseServices<RoleModulePermission>));
+        //services.AddTransient(typeof(IBaseServices<Model.Models.Module>), typeof(BaseServices<Model.Models.Module>));
         return services;
     }
 }

@@ -16,6 +16,10 @@ namespace Services
     /// </summary>	
     public class UserRoleServices : BaseServices<UserRole>, IUserRoleServices
     {
+        public UserRoleServices(IBaseRepository<UserRole> BaseDal) : base(BaseDal)
+        {
+        }
+
         /// <summary>
         /// 
         /// </summary>

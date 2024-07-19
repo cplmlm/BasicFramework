@@ -5,6 +5,7 @@ using Model.Models;
 using Services.Base;
 using System.Linq;
 using System.Threading.Tasks;
+using Repository.Base;
 
 namespace Services
 {
@@ -14,11 +15,15 @@ namespace Services
     /// </summary>	
     public class RoleServices : BaseServices<Role>, IRoleServices
     {
-       /// <summary>
-       /// 
-       /// </summary>
-       /// <param name="roleName"></param>
-       /// <returns></returns>
+        public RoleServices(IBaseRepository<Role> BaseDal) : base(BaseDal)
+        {
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="roleName"></param>
+        /// <returns></returns>
         public async Task<Role> SaveRole(string roleName)
         {
             Role role = new Role(roleName);
